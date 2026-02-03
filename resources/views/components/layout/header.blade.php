@@ -21,7 +21,7 @@
             </ul>
         </div>
         <a href="/" class="btn btn-ghost text-xl font-bold">
-            <span class="text-primary">Brand</span> New Day
+            <span class="text-primary">Storyblok</span> and Laravel
         </a>
     </div>
 

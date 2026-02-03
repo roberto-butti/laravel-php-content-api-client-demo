@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/story/{slug?}', [StoryController::class, 'show'])->where('slug', '.*')->name('story.show');
+Route::post('/api/preview', [StoryController::class, 'preview'])->name('story.preview');
