@@ -1,6 +1,6 @@
 @props(['blok'])
 
-<section class="py-16 px-8 bg-primary text-primary-content">
+<section {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="py-16 px-8 bg-primary text-primary-content">
     <div class="container mx-auto text-center">
         <h2 class="text-3xl font-bold mb-6">
             @foreach($blok['headline'] ?? [] as $segment)

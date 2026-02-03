@@ -10,7 +10,7 @@
     };
 @endphp
 
-<section class="py-16 px-8 bg-base-100">
+<section {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="py-16 px-8 bg-base-100">
     <div class="container mx-auto">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-bold mb-4">

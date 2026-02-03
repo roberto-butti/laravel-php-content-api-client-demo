@@ -4,7 +4,7 @@
     $reverse = $blok['reverse_desktop_layout'] ?? false;
 @endphp
 
-<section class="py-16 px-8 bg-base-100">
+<section {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="py-16 px-8 bg-base-100">
     <div class="container mx-auto">
         <div class="flex flex-col {{ $reverse ? 'lg:flex-row-reverse' : 'lg:flex-row' }} gap-12 items-center">
             @if(!empty($blok['image']['filename']))

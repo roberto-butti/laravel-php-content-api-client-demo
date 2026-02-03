@@ -2,6 +2,7 @@
 
 @php
     $url = $blok['link']['cached_url'] ?? $blok['link']['url'] ?? '#';
+    $editable = \App\Services\StoryblokEditable::attributes($blok);
     $sizeClass = match($blok['size'] ?? 'medium') {
         'small' => 'btn-sm',
         'large' => 'btn-lg',
@@ -22,6 +23,6 @@
     };
 @endphp
 
-<a href="{{ $url }}" class="btn {{ $sizeClass }} {{ $styleClass }} {{ $bgClass }}">
+<a {!! $editable !!} href="{{ $url }}" class="btn {{ $sizeClass }} {{ $styleClass }} {{ $bgClass }}">
     {{ $blok['label'] ?? 'Button' }}
 </a>

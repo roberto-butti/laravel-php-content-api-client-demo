@@ -1,6 +1,6 @@
 @props(['blok'])
 
-<div class="card bg-base-200 shadow-xl">
+<div {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="card bg-base-200 shadow-xl">
     <figure class="px-10 pt-10">
         @if(!empty($blok['icon']['filename']))
             <img

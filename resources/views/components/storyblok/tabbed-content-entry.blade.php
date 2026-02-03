@@ -1,6 +1,6 @@
 @props(['blok'])
 
-<div class="flex flex-col lg:flex-row gap-8 items-center">
+<div {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="flex flex-col lg:flex-row gap-8 items-center">
     @if(!empty($blok['image']['filename']))
         <div class="lg:w-1/2">
             <img

@@ -1,6 +1,6 @@
 @props(['blok'])
 
-<section class="hero min-h-[500px] bg-base-200">
+<section {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="hero min-h-[500px] bg-base-200">
     <div class="hero-content flex-col lg:flex-row{{ ($blok['layout'] ?? '') === 'split' ? '-reverse' : '' }} gap-8">
         @if(!empty($blok['image']['filename']))
             <img

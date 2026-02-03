@@ -17,5 +17,7 @@
     </main>
 
     <x-layout.footer />
+
+    <x-storyblok.bridge />
 </body>
 </html>

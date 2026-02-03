@@ -9,4 +9,4 @@
     };
 @endphp
 
-<span class="{{ $highlightClass }}">{{ $blok['text'] ?? '' }}</span>
+<span {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="{{ $highlightClass }}">{{ $blok['text'] ?? '' }}</span>
