@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $story['name'] }}</title>
-    <style>
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 1rem;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <h1>{{ $story['name'] }}</h1>
-    <p><strong>Slug:</strong> {{ $story['full_slug'] }}</p>
-    <p><strong>Created:</strong> {{ $story['created_at'] }}</p>
+<body class="min-h-screen bg-base-200">
+    <div class="container mx-auto p-8">
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h1 class="card-title text-3xl">{{ $story['name'] }}</h1>
 
-    <h2>Content</h2>
-    <pre>{{ json_encode($story['content'], JSON_PRETTY_PRINT) }}</pre>
+                <div class="divider"></div>
+
+                <div class="flex flex-wrap gap-4">
+                    <div class="badge badge-primary">{{ $story['full_slug'] }}</div>
+                    <div class="badge badge-ghost">{{ $story['created_at'] }}</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <h2 class="text-xl font-semibold">Content</h2>
+                <div class="mockup-code">
+                    <pre class="px-4 overflow-x-auto"><code>{{ json_encode($story['content'], JSON_PRETTY_PRINT) }}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
