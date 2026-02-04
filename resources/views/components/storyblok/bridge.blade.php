@@ -1,4 +1,5 @@
 @if(request()->has('_storyblok') || request()->has('_storyblok_tk'))
+<script src="https://unpkg.com/idiomorph@0.7.4/dist/idiomorph.min.js"></script>
 <script>
     (function() {
         const script = document.createElement('script')
@@ -17,7 +18,6 @@
 
             const updatePreview = debounce(async (story) => {
                 try {
-                    console.log("SENDING")
                     const response = await fetch('/api/preview', {
                         method: 'POST',
                         headers: {
@@ -30,17 +30,22 @@
                     const doc = parser.parseFromString(html, 'text/html')
                     const newMain = doc.querySelector('main')
                     const currentMain = document.querySelector('main')
+
                     if (newMain && currentMain) {
-                        currentMain.innerHTML = newMain.innerHTML
+                        // Use idiomorph to morph only the changed parts of the DOM
+                        Idiomorph.morph(currentMain, newMain, {
+                            morphStyle: 'innerHTML',
+                            ignoreActiveValue: true,
+                            head: { style: 'merge' }
+                        })
                     }
                 } catch (error) {
                     console.error('Preview error:', error)
                 }
-            }, 500)
+            }, 300)
 
             storyblokInstance.on('input', (event) => {
                 if (event.story) {
-                    console.log("INPUT")
                     updatePreview(event.story)
                 }
             })
