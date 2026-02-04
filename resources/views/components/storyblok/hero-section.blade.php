@@ -3,10 +3,14 @@
 <section {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="hero min-h-[500px] bg-base-200">
     <div class="hero-content flex-col lg:flex-row{{ ($blok['layout'] ?? '') === 'split' ? '-reverse' : '' }} gap-8">
         @if(!empty($blok['image']['filename']))
-            <img
-                src="{{ $blok['image']['filename'] }}/m/800x600"
-                alt="{{ $blok['image']['alt'] ?? '' }}"
+            <x-storyblok.image
+                :image="$blok['image']"
+                sizes="(max-width: 640px) 100vw, 384px"
+                :widths="[384, 512, 640, 768]"
+                :ratio="4/3"
                 class="max-w-sm rounded-lg shadow-2xl"
+                loading="eager"
+                fetchpriority="high"
             />
         @endif
 

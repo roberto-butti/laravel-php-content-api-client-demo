@@ -3,9 +3,10 @@
 <div {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="card bg-base-200 shadow-xl">
     <figure class="px-10 pt-10">
         @if(!empty($blok['icon']['filename']))
-            <img
-                src="{{ $blok['icon']['filename'] }}/m/{{ $blok['icon_width'] ?? '80' }}x0"
-                alt="{{ $blok['icon']['alt'] ?? '' }}"
+            <x-storyblok.image
+                :image="$blok['icon']"
+                sizes="80px"
+                :widths="[80, 160]"
                 class="w-20 h-20 object-contain"
             />
         @endif

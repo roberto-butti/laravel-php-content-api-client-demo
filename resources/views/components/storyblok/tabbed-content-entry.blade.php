@@ -3,9 +3,11 @@
 <div {!! \App\Services\StoryblokEditable::attributes($blok) !!} class="flex flex-col lg:flex-row gap-8 items-center">
     @if(!empty($blok['image']['filename']))
         <div class="lg:w-1/2">
-            <img
-                src="{{ $blok['image']['filename'] }}/m/600x600"
-                alt="{{ $blok['image']['alt'] ?? '' }}"
+            <x-storyblok.image
+                :image="$blok['image']"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                :widths="[400, 600, 800, 1000]"
+                :ratio="1/1"
                 class="rounded-lg shadow-xl"
             />
         </div>
