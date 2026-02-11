@@ -8,15 +8,7 @@
         script.onload = function() {
             const storyblokInstance = new window.StoryblokBridge()
 
-            function debounce(fn, delay) {
-                let timeoutId
-                return function(...args) {
-                    clearTimeout(timeoutId)
-                    timeoutId = setTimeout(() => fn.apply(this, args), delay)
-                }
-            }
-
-            const updatePreview = debounce(async (story) => {
+            async function updatePreview(story) {
                 try {
                     const response = await fetch('/api/preview', {
                         method: 'POST',
@@ -32,17 +24,16 @@
                     const currentMain = document.querySelector('main')
 
                     if (newMain && currentMain) {
-                        // Use idiomorph to morph only the changed parts of the DOM
                         Idiomorph.morph(currentMain, newMain, {
                             morphStyle: 'innerHTML',
                             ignoreActiveValue: true,
-                            head: { style: 'merge' }
+                            // head: { style: 'merge' }
                         })
                     }
                 } catch (error) {
                     console.error('Preview error:', error)
                 }
-            }, 300)
+            }
 
             storyblokInstance.on('input', (event) => {
                 if (event.story) {

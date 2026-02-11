@@ -1,24 +1,24 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import tailwindcss from '@tailwindcss/vite';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import tailwindcss from "@tailwindcss/vite";
+import mkcert from "vite-plugin-mkcert";
 
-const host = '127.0.0.1';
-const port = '8000';
+const host = "127.0.0.1";
+const port = "8000";
 
 export default defineConfig({
     plugins: [
+        mkcert(),
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ["resources/css/app.css", "resources/js/app.js"],
             refresh: true,
         }),
         tailwindcss(),
-        basicSsl(),
     ],
     server: {
         https: true,
         proxy: {
-            '^(?!(\/\\@vite|\/resources|\/node_modules))': {
+            "^(?!(\/\\@vite|\/resources|\/node_modules))": {
                 target: `http://${host}:${port}`,
             },
         },
@@ -26,7 +26,7 @@ export default defineConfig({
         port: 5173,
         hmr: { host },
         watch: {
-            ignored: ['**/storage/framework/views/**'],
+            ignored: ["**/storage/framework/views/**"],
         },
     },
 });

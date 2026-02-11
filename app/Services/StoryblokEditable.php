@@ -9,9 +9,9 @@ class StoryblokEditable
      *
      * @return array{data-blok-c?: string, data-blok-uid?: string}
      */
-    public static function get(array|null $blok): array
+    public static function get(?array $blok): array
     {
-        if (!is_array($blok) || !isset($blok['_editable'])) {
+        if (! is_array($blok) || ! isset($blok['_editable'])) {
             return [];
         }
 
@@ -25,7 +25,7 @@ class StoryblokEditable
             if ($options && isset($options['id'], $options['uid'])) {
                 return [
                     'data-blok-c' => json_encode($options),
-                    'data-blok-uid' => $options['id'] . '-' . $options['uid'],
+                    'data-blok-uid' => $options['id'].'-'.$options['uid'],
                 ];
             }
 
@@ -38,7 +38,7 @@ class StoryblokEditable
     /**
      * Get editable attributes as an HTML string.
      */
-    public static function attributes(array|null $blok): string
+    public static function attributes(?array $blok): string
     {
         $attrs = self::get($blok);
 
